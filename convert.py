@@ -49,8 +49,8 @@ def convert_saves(save_dir: str, need_to_save: set[str]) ->  None:
                 continue
 
             if isinstance(_type, str):
-                with open(os.path.join("../output", _type), "wb") as new_file:
-                    print(f"Writing file: {os.path.join("../output", _type)}")
+                with open(os.path.join("output", _type), "wb") as new_file:
+                    print(f"Writing file: {os.path.join("output", _type)}")
                     new_file.write(file.read())
                     saved_files.add(_type)
 
