@@ -42,7 +42,8 @@ def convert_saves(save_dir: str, need_to_save: set[str]) ->  None:
     for f in files:
         print(f"Find file: {f}")
         with open(f, "rb") as file:
-            _type = recognize_file_type(file.read())
+            _bytes = file.read()
+            _type = recognize_file_type(_bytes)
 
             if _type is None:
                 print(f"Can't recognize file: {f}. Skipping...")
@@ -51,7 +52,7 @@ def convert_saves(save_dir: str, need_to_save: set[str]) ->  None:
             if isinstance(_type, str):
                 with open(os.path.join("output", _type), "wb") as new_file:
                     print(f"Writing file: {os.path.join("output", _type)}")
-                    new_file.write(file.read())
+                    new_file.write(_bytes)
                     saved_files.add(_type)
 
     for f in need_to_save - saved_files:
